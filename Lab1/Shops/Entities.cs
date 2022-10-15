@@ -175,6 +175,6 @@ public class Store
 
     public string ProductInformation(Product thisProduct)
     {
-        return "Product '" + thisProduct.Name() + "' available in " + _storeName + " in " + _catalog.Amount(thisProduct.Name()) + " for " + _catalog.Price(thisProduct);
+        return "Product '" + thisProduct.Name() + "' is available in " + _storeName + " in " + _catalog.Amount(thisProduct.Name()) + " for " + _catalog.Price(thisProduct);
     }
 }

@@ -23,9 +23,9 @@ public class Test
         var storeCatalog = new Catalog();
         storeCatalog.AddProduct(firstProduct, 1);
         var myStore = new Store(storeCatalog, "Shop", "House");
-        Assert.Equal("Product Gold is available in Shop in 1 for 2000", myStore.ProductInformation(firstProduct));
+        Assert.Equal("Product 'Gold' is available in Shop in 1 for 2000", myStore.ProductInformation(firstProduct));
         myStore.ChangePriceInStoreCatalog(firstProduct, 5000);
-        Assert.Equal("Product Gold is available in Shop in 1 for 5000", myStore.ProductInformation(firstProduct));
+        Assert.Equal("Product 'Gold' is available in Shop in 1 for 5000", myStore.ProductInformation(firstProduct));
     }
 
     [Fact]
@@ -41,7 +41,9 @@ public class Test
         myCart.AddProductInCart(firstProduct, 3);
         myCart.AddProductInCart(secondProduct, 1);
         Assert.Equal("The purchase is successful!", myStore.MakePurchase(myCart, 5000));
-        Assert.Equal("Buyer have not enough cash!", myStore.MakePurchase(myCart, 1));
+        var friendCart = new Cart();
+        friendCart.AddProductInCart(firstProduct, 2);
+        Assert.Equal("Buyer have not enough cash!", myStore.MakePurchase(friendCart, 1));
         myCart.AddProductInCart(firstProduct, 1000);
         Assert.Equal("Not enough of some product in store catalog!", myStore.MakePurchase(myCart, 9999999));
     }
